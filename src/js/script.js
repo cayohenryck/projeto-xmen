@@ -8,19 +8,35 @@ characters.forEach((character) => {
             window.scrollTo({top: 0, behavior: 'smooth'});
         };
 
-        const characterSelected = document.querySelector('.selected');
-        characterSelected.classList.remove('selected');
+        removeCharacterSelection();
 
         character.classList.add('selected');
 
-        const characterBigImage = document.querySelector('.character-image');
-        const idCharacter = character.attributes.id.value;
-        characterBigImage.src = `/src/imagens/card-${idCharacter}.png`;
+        changeCharacterImage(character);
 
-        const characterName = document.getElementById('character-name');
-        characterName.innerText = character.getAttribute('data-name');
+        changeCharacterName(character);
 
-        const characterDescription = document.getElementById('character-description');
-        characterDescription.innerText = character.getAttribute('data-description');
+        changeCharacterDescription(character);
     });
 });
+
+function changeCharacterDescription(character) {
+    const characterDescription = document.getElementById('character-description');
+    characterDescription.innerText = character.getAttribute('data-description');
+}
+
+function changeCharacterName(character) {
+    const characterName = document.getElementById('character-name');
+    characterName.innerText = character.getAttribute('data-name');
+}
+
+function changeCharacterImage(character) {
+    const characterBigImage = document.querySelector('.character-image');
+    const idCharacter = character.attributes.id.value;
+    characterBigImage.src = `/src/imagens/card-${idCharacter}.png`;
+}
+
+function removeCharacterSelection() {
+    const characterSelected = document.querySelector('.selected');
+    characterSelected.classList.remove('selected');
+}
